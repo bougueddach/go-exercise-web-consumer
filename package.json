@@ -1,0 +1,31 @@
+{
+  "name": "go-exercise-web-consumer",
+  "version": "1.0.0",
+  "description": "consumer to the goLang backend to get and edit a user",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bougueddach/go-exercise-web-consumer.git"
+  },
+  "author": "bougueddach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bougueddach/go-exercise-web-consumer/issues"
+  },
+  "homepage": "https://github.com/bougueddach/go-exercise-web-consumer#readme",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.0.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^4.20.2",
+    "webpack-dev-server": "^3.1.9"
+  }
+}
