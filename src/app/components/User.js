@@ -4,6 +4,7 @@
 import React from "react"
 import Request from 'superagent'
 
+
 export default class User extends React.Component {
     constructor(props) {
         super(props);
@@ -18,22 +19,27 @@ export default class User extends React.Component {
     }
 
     componentDidMount() {
-        var url = "http://localhost:8080/user/" + this.state.user.Id
+        this.getUserById(this.state.user.Id);
+    }
+
+    render() {
+        let user = this.state.user
+        return (
+            <td>
+                <tr contentEditable={true}>{user.Avatar}</tr>
+                <tr contentEditable={true}>{user.Name}</tr>
+                <tr contentEditable={true}>{user.Email}</tr>
+                <button> Save</button>
+            </td>
+        );
+    }
+
+    getUserById = (id) => {
+        let url = "http://localhost:8080/user/" + id
         Request.get(url).then((response) => {
             this.setState({
                 user: response.body
             })
         })
-    }
-
-    render() {
-        var user = this.state.user
-        return (
-            <div>
-                <div>{user.Name}</div>
-                <div>{user.Email}</div>
-                <div>{user.Avatar}</div>
-            </div>
-        );
     }
 }
