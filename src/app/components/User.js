@@ -26,10 +26,10 @@ export default class User extends React.Component {
         let user = this.state.user
         return (
             <td>
-                <tr contentEditable={true}>{user.Avatar}</tr>
-                <tr contentEditable={true}>{user.Name}</tr>
-                <tr contentEditable={true}>{user.Email}</tr>
-                <button> Save</button>
+                <tr contentEditable={true}>Avatar : {user.Avatar}</tr>
+                <tr contentEditable={true}>Name : {user.Name}</tr>
+                <tr contentEditable={true}>Email : {user.Email}</tr>
+                <button onClick={this.updateUser}> Save</button>
             </td>
         );
     }
@@ -41,5 +41,16 @@ export default class User extends React.Component {
                 user: response.body
             })
         })
+    }
+    updateUser = () => {
+        let url = "http://localhost:8080/user/" + this.state.user.id
+        let data = {
+            "Avatar" : this.state.user.Avatar,
+            "Name" : this.state.user.Name,
+            "Email" : this.state.user.Email
+        }
+        Request.put(url)
+            .set('Content-Type', 'application/json')
+            .send(data)
     }
 }
