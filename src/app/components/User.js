@@ -2,8 +2,7 @@
  * Created by macbook on 10/7/18.
  */
 import React from "react"
-import Request from 'superagent'
-import {API_HOST} from '../api/Api';
+import Api from '../api/Api';
 
 
 export default class User extends React.Component {
@@ -30,7 +29,7 @@ export default class User extends React.Component {
                 <td>
                     <tr>
                         <td ><p >Name</p></td>
-                        <td ><p contentEditable={true} onChange={(event) =>this.onChange(event)}>{user.Name}</p></td>
+                        <td ><p contentEditable={true} onChange={(event) => this.onChange(event)}>{user.Name}</p></td>
                     </tr>
                     <tr>
                         <td ><p >Email</p></td>
@@ -47,17 +46,15 @@ export default class User extends React.Component {
         this.setState({[event.target.name]: event.target.value()});
     }
 
-    getUserById = (id) => {
-        let url = API_HOST + "user/" + id
-        Request.get(url).then((response) => {
-            this.setState({
-                user: response.body
-            })
+    getUserById = async (id) => {
+        let user = await Api.findUserById(id)
+        this.setState({
+            user: user
         })
-        // Api.getUserById(id)   healthier but I need more time to get this approach to work
+
     }
     updateUser = () => {
-        let url = API_HOST + "user/" + this.state.user.id
+        let url = Api.API_HOST + "user/" + this.state.user.id
         let data = {
             "Avatar": this.state.user.Avatar,
             "Name": this.state.user.Name,
