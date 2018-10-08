@@ -9,7 +9,7 @@ export default class User extends React.Component {
         super(props);
         this.state = {
             user: {
-                Id: null,
+                Id: this.props.params.id,
                 Name: null,
                 Email: null,
                 Avatar: null
@@ -18,13 +18,14 @@ export default class User extends React.Component {
     }
 
     componentDidMount() {
-        var url = "http://localhost:8080/user/1"
+        var url = "http://localhost:8080/user/" + this.state.user.Id
         Request.get(url).then((response) => {
             this.setState({
                 user: response.body
             })
         })
     }
+
     render() {
         var user = this.state.user
         return (
